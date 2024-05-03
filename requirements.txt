@@ -4,4 +4,4 @@ ctransformers
 langchain
 python-box
 streamlit
-google-generativeai
+
