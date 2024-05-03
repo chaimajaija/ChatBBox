@@ -20,7 +20,7 @@ submit=st.button("Generate")
 
 ## Final response
 
-os.environ["OPENAI_API_KEY"]="sk-proj-lmUKvNbPsW6LVTDs2NeVT3BlbkFJDK64sUi6Gy21IOq2bkDe"
+os.environ["OPENAI_API_KEY"]="sk-proj-JNZOAyCfB5GtImqUQy9QT3BlbkFJHNSmRFvHrYmVcfcC2k8w"
 
 
 
