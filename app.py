@@ -4,11 +4,11 @@ import openai
 import os
 
 
-Key=st.secrets('STRKEY')
 
 
 
-os.environ["OPENAI_API_KEY"]=Key
+
+os.environ["OPENAI_API_KEY"]="sk-proj-lmUKvNbPsW6LVTDs2NeVT3BlbkFJDK64sUi6Gy21IOq2bkDe"
 from openai import OpenAI
 import os
 
