@@ -26,8 +26,7 @@ with col2:
 submit=st.button("Generate")
 
 ## Final response
-if submit:
-    st.write(completion.choices[0].message.content)
+
 os.environ["OPENAI_API_KEY"]="sk-proj-lmUKvNbPsW6LVTDs2NeVT3BlbkFJDK64sUi6Gy21IOq2bkDe"
 
 
@@ -60,11 +59,11 @@ messages = [{"role": "user", "content": prompt}]
 # make completion
 completion = client.chat.completions.create(model=deployment, messages=messages)
 
-# print response
-print(completion.choices[0].message.content)
+
 
 #  very unhappy _____.
 
 # Once upon a time there was a very unhappy mermaid.
 
-
+if submit:
+    st.write(completion.choices[0].message.content)
