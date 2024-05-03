@@ -5,7 +5,7 @@ import os
 
 
 Key=st.secrets('API_KEY')
-os.environ["OPENAI_API_KEY"] = key
+os.environ["OPENAI_API_KEY"] = Key
 model=os.environ["OPENAI_API_KEY"]
 question = input("Ask your questions on python language to your study buddy: ")
 prompt = f"""
