@@ -1,7 +1,6 @@
 import streamlit as st
-from langchain.prompts import PromptTemplate
-from langchain.llms import CTransformers
-from llamaapi import LlamaAPI
+
+import OpenAI
 import os
 
 os.environ["OPENAI_API_KEY"] = st.secrets('API_KEY')
