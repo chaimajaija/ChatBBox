@@ -4,7 +4,7 @@ import openai
 import os
 
 
-Key=st.secrets('API_KEY')
+Key=st.secrets('STRKEY')
 os.environ["OPENAI_API_KEY"] = Key
 model=os.environ["OPENAI_API_KEY"]
 question = input("Ask your questions on python language to your study buddy: ")
