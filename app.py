@@ -3,7 +3,7 @@ from langchain.prompts import PromptTemplate
 from langchain.llms import CTransformers
 import google.generativeai as genai
 import google.ai.generativelanguage as glm
-
+import os
 ## Function To get response from LLAma 2 model
 GOOGLE_API_KEY = os.environ[API_KEY]
 
