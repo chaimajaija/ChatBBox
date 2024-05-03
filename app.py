@@ -24,7 +24,7 @@ client = OpenAI(
 deployment="gpt-3.5-turbo-0125"
 
 # add your completion code
-question = input("Ask your questions on python language to your study buddy: ")
+question = text_input
 prompt = f"""
 You are an expert on the python language.
 
@@ -54,7 +54,7 @@ st.set_page_config(page_title="Generate Blogs",
 
 st.header("Generate Blogs 🤖")
 
-input_text=st.text_input("Enter the Blog Topic")
+input_text=st.text_input("Ask your questions on python language to your study buddy")
 
 ## creating to more columns for additonal 2 fields
 
