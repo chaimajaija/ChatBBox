@@ -2,15 +2,35 @@ import streamlit as st
 
 import openai
 import os
-
-
-
-
-
-
-os.environ["OPENAI_API_KEY"]="sk-proj-lmUKvNbPsW6LVTDs2NeVT3BlbkFJDK64sUi6Gy21IOq2bkDe"
 from openai import OpenAI
-import os
+
+st.set_page_config(page_title="Generate Blogs",
+                    page_icon='🤖',
+                    layout='centered',
+                    initial_sidebar_state='collapsed')
+
+st.header("Generate Blogs 🤖")
+
+input_text=st.text_input("Ask your questions on python language to your study buddy")
+
+## creating to more columns for additonal 2 fields
+
+col1,col2=st.columns([5,5])
+
+with col1:
+    no_words=st.text_input('No of Words')
+with col2:
+    blog_style=st.selectbox('Writing the blog for',
+                            ('Researchers','Data Scientist','Common People'),index=0)
+    
+submit=st.button("Generate")
+
+## Final response
+if submit:
+    st.write(completion.choices[0].message.content)
+os.environ["OPENAI_API_KEY"]="sk-proj-lmUKvNbPsW6LVTDs2NeVT3BlbkFJDK64sUi6Gy21IOq2bkDe"
+
+
 
 
 
@@ -47,27 +67,4 @@ print(completion.choices[0].message.content)
 
 # Once upon a time there was a very unhappy mermaid.
 
-st.set_page_config(page_title="Generate Blogs",
-                    page_icon='🤖',
-                    layout='centered',
-                    initial_sidebar_state='collapsed')
 
-st.header("Generate Blogs 🤖")
-
-input_text=st.text_input("Ask your questions on python language to your study buddy")
-
-## creating to more columns for additonal 2 fields
-
-col1,col2=st.columns([5,5])
-
-with col1:
-    no_words=st.text_input('No of Words')
-with col2:
-    blog_style=st.selectbox('Writing the blog for',
-                            ('Researchers','Data Scientist','Common People'),index=0)
-    
-submit=st.button("Generate")
-
-## Final response
-if submit:
-    st.write(completion.choices[0].message.content)
