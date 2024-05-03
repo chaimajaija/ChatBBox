@@ -57,4 +57,4 @@ submit=st.button("Generate")
 
 ## Final response
 if submit:
-    st.write(getLLamaresponse(input_text,no_words,blog_style))
+    st.write("keep up the good job")
