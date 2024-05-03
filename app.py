@@ -1,16 +1,17 @@
 import streamlit as st
 from langchain.prompts import PromptTemplate
 from langchain.llms import CTransformers
+import google.generativeai as genai
+import google.ai.generativelanguage as glm
 
 ## Function To get response from LLAma 2 model
+GOOGLE_API_KEY = os.environ['AIzaSyCc_Luvg7lE0MSZFbq9uxlEu1eM_teTFmw']
 
+genai.configure(api_key=GOOGLE_API_KEY)
+model = genai.GenerativeModel(model_name='gemini-PRO')
 def getLLamaresponse(input_text,no_words,blog_style):
 
-    ### LLama2 model
-    llm=CTransformers(model='gemini-pro',
-                      model_type='llama',
-                      config={'max_new_tokens':256,
-                              'temperature':0.01})
+
     
     ## Prompt Template
 
