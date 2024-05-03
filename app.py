@@ -37,7 +37,7 @@ deployment="gpt-3.5-turbo-0125"
 
 # add your completion code
 question = input_text
-prompt = f"""
+prompt = """
 You are an expert on the python language.
 
 Whenever certain questions are asked, you need to provide response in below format.
@@ -46,7 +46,7 @@ Whenever certain questions are asked, you need to provide response in below form
 - Example code showing the concept implementation
 - explanation of the example and how the concept is done for the user to understand better.
 
-Provide answer for the question: {question}
+Provide answer for the question {question}
 """
 messages = [{"role": "user", "content": prompt}]  
 # make completion
