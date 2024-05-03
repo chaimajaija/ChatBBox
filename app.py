@@ -8,7 +8,7 @@ Key=st.secrets('STRKEY')
 
 
 
-os.environ["OPENAI_API_KEY"]=key
+os.environ["OPENAI_API_KEY"]=Key
 from openai import OpenAI
 import os
 
