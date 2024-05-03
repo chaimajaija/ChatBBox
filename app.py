@@ -3,7 +3,7 @@ from langchain.prompts import PromptTemplate
 from langchain.llms import CTransformers
 from llamaapi import LlamaAPI
 import os
-llama = LlamaAPI(API_KEY)
+
 
 def getLLamaresponse(input_text,no_words,blog_style):
 
