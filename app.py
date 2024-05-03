@@ -4,32 +4,23 @@ from langchain.llms import CTransformers
 from llamaapi import LlamaAPI
 import os
 
+os.environ["OPENAI_API_KEY"] = st.secrets('API_KEY')
+model=os.environ["OPENAI_API_KEY"]
+question = input("Ask your questions on python language to your study buddy: ")
+prompt = f"""
+You are an expert on the python language.
 
-def getLLamaresponse(input_text,no_words,blog_style):
+Whenever certain questions are asked, you need to provide response in below format.
 
-    ### LLama2 model
-    llm=CTransformers(model=llama,
-                      model_type='llama',
-                      config={'max_new_tokens':256,
-                              'temperature':0.01})
-    
-    ## Prompt Template
+- Concept
+- Example code showing the concept implementation
+- explanation of the example and how the concept is done for the user to understand better.
 
-    template="""
-        Write a blog for {blog_style} job profile for a topic {input_text}
-        within {no_words} words.
-            """
-    
-    prompt=PromptTemplate(input_variables=["blog_style","input_text",'no_words'],
-                          template=template)
-    
-    ## Generate the ressponse from the LLama 2 model
-    response=llm(prompt.format(blog_style=blog_style,input_text=input_text,no_words=no_words))
-    print(response)
-    return response
-
-
-
+Provide answer for the question: {question}
+"""
+messages = [{"role": "user", "content": prompt}]  
+# make completion
+completion = client.chat.completions.create(model=model, messages=messages)
 
 
 
@@ -57,4 +48,4 @@ submit=st.button("Generate")
 
 ## Final response
 if submit:
-    st.write("keep up the good job")
+    st.write(completion.choices[0].message.content)
