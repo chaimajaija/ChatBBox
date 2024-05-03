@@ -15,14 +15,7 @@ input_text=st.text_input("Ask your questions on python language to your study bu
 
 ## creating to more columns for additonal 2 fields
 
-col1,col2=st.columns([5,5])
 
-with col1:
-    no_words=st.text_input('No of Words')
-with col2:
-    blog_style=st.selectbox('Writing the blog for',
-                            ('Researchers','Data Scientist','Common People'),index=0)
-    
 submit=st.button("Generate")
 
 ## Final response
