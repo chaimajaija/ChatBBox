@@ -44,7 +44,7 @@ client = OpenAI(
 deployment="gpt-3.5-turbo-0125"
 
 # add your completion code
-question = text_input
+question = input_text
 prompt = f"""
 You are an expert on the python language.
 
