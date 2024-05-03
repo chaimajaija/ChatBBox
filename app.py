@@ -5,8 +5,25 @@ import os
 
 
 Key=st.secrets('STRKEY')
-os.environ["OPENAI_API_KEY"] = Key
-model=os.environ["OPENAI_API_KEY"]
+
+
+
+os.environ["OPENAI_API_KEY"]=key
+from openai import OpenAI
+import os
+
+
+
+
+# configure Azure OpenAI service client 
+client = OpenAI(
+  api_key=os.environ['OPENAI_API_KEY']
+  )
+
+#deployment=os.environ['OPENAI_DEPLOYMENT']
+deployment="gpt-3.5-turbo-0125"
+
+# add your completion code
 question = input("Ask your questions on python language to your study buddy: ")
 prompt = f"""
 You are an expert on the python language.
@@ -21,10 +38,14 @@ Provide answer for the question: {question}
 """
 messages = [{"role": "user", "content": prompt}]  
 # make completion
-completion = client.chat.completions.create(model=model, messages=messages)
+completion = client.chat.completions.create(model=deployment, messages=messages)
 
+# print response
+print(completion.choices[0].message.content)
 
+#  very unhappy _____.
 
+# Once upon a time there was a very unhappy mermaid.
 
 st.set_page_config(page_title="Generate Blogs",
                     page_icon='🤖',
