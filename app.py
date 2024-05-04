@@ -11,8 +11,8 @@ st.set_page_config(page_title="Find your Business Idea",
 
 st.header("Brain storm problems 🤖")
 
-input_text=st.text_input("Specify the sector")
-
+input_text1=st.text_input("Specify the sector")
+input_text2=st.text_input("Specify the sector")
 ## creating to more columns for additonal 2 fields
 
 
