@@ -36,7 +36,7 @@ client = OpenAI(
 deployment="gpt-4"
 
 # add your completion code
-question = input_text
+question = input_text1
 prompt = f"""
 You are an expert investor & a problem solver gunius  an IQ of 200.
 
