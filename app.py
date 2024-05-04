@@ -4,14 +4,14 @@ import openai
 import os
 from openai import OpenAI
 
-st.set_page_config(page_title="Generate Blogs",
+st.set_page_config(page_title="Find your Business Idea",
                     page_icon='🤖',
                     layout='centered',
                     initial_sidebar_state='collapsed')
 
-st.header("Generate Blogs 🤖")
+st.header("Brain storm problems 🤖")
 
-input_text=st.text_input("Ask your questions on python language to your study buddy")
+input_text=st.text_input("Specify the sector")
 
 ## creating to more columns for additonal 2 fields
 
@@ -20,7 +20,7 @@ submit=st.button("Generate")
 
 ## Final response
 
-os.environ["OPENAI_API_KEY"]=""
+os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
 
 
 
@@ -33,20 +33,16 @@ client = OpenAI(
   )
 
 #deployment=os.environ['OPENAI_DEPLOYMENT']
-deployment="gpt-3.5-turbo-0125"
+deployment="gpt-4"
 
 # add your completion code
 question = input_text
 prompt = """
-You are an expert on the python language.
+You are an expert investor & a problem solver gunius  an IQ of 200.
 
-Whenever certain questions are asked, you need to provide response in below format.
+You find realword issue & turm them to business ideas.
 
-- Concept
-- Example code showing the concept implementation
-- explanation of the example and how the concept is done for the user to understand better.
-
-Provide answer for the question {question}
+Provide 10 problems for this sector {question}
 """
 messages = [{"role": "user", "content": prompt}]  
 # make completion
