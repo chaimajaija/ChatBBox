@@ -20,7 +20,19 @@ def get_answer(prompt, question):
     
     # Make completion request
     completion = client.chat.completions.create(model=deployment, messages=messages)
-    return completion["choices"][0]["message"]["content"]
+    
+    try:
+        # Extract the content from the response
+        answer = completion["choices"][0]["message"]["content"]
+        return answer
+    except KeyError:
+        # Handle missing keys in the response
+        st.error("Error: Unable to retrieve answer. Please try again.")
+        return None
+    except Exception as e:
+        # Handle other exceptions
+        st.error(f"Error: {str(e)}")
+        return None
 
 def main():
     st.title("Interactive Prompt & Answer App")
