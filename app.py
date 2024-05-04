@@ -37,12 +37,12 @@ deployment="gpt-4"
 
 # add your completion code
 question = input_text
-prompt = """
+prompt = f"""
 You are an expert investor & a problem solver gunius  an IQ of 200.
 
-You find realword issue & turm them to business ideas.
+You find realword issue & turn them to business ideas.
 
-Provide 10 problems for this sector {question}
+Provide 10 problems for the sector of {question}
 """
 messages = [{"role": "user", "content": prompt}]  
 # make completion
