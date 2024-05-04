@@ -41,9 +41,9 @@ def main():
         st.session_state.stage = 1
     if st.session_state.stage == 1:
         prompt = st.text_input("Enter your prompt:")
-        question = st.text_input("Enter your question:")
+        st.session_state.question = st.text_input("Enter your question:")
         if st.button("Get Answer"):
-            st.session_state.answer = get_answer(prompt, question)
+            st.session_state.answer = get_answer(prompt, st.session_state.question)
             st.session_state.stage = 2
     
     # Stage 2: Display answer and input next prompt
@@ -51,8 +51,7 @@ def main():
         st.write(f"Answer: {st.session_state.answer}")
         next_prompt = st.text_input("Enter next prompt based on the answer:")
         if st.button("Get Answer for Next Prompt"):
-            st.session_state.answer = get_answer(next_prompt, question)
-            st.session_state.stage = 2
+            st.session_state.answer = get_answer(next_prompt, st.session_state.question)
 
 if __name__ == "__main__":
     main()
