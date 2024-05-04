@@ -23,11 +23,11 @@ def get_answer(prompt, question):
     
     try:
         # Extract the content from the response
-        answer = completion["choices"][0]["message"]["content"]
+        answer = completion.choices[0].message.content
         return answer
-    except KeyError:
-        # Handle missing keys in the response
-        st.error("Error: Unable to retrieve answer. Please try again.")
+    except AttributeError:
+        # Handle unexpected response format
+        st.error("Error: Unexpected response format. Please try again.")
         return None
     except Exception as e:
         # Handle other exceptions
