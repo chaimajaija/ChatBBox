@@ -4,55 +4,46 @@ import openai
 import os
 from openai import OpenAI
 
-st.set_page_config(page_title="Find your Business Idea",
-                    page_icon='🤖',
-                    layout='centered',
-                    initial_sidebar_state='collapsed')
-
-st.header("Brain storm problems 🤖")
-
-input_text1=st.text_input("Specify the sector")
-input_text2=st.text_input("Specify the sector")
-## creating to more columns for additonal 2 fields
-
-
-submit=st.button("Generate")
-
-## Final response
-
+# Set OpenAI API key from Streamlit secrets
 os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
 
+# Configure Azure OpenAI service client
+client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
 
+# Deployment
+deployment = "gpt-4"
 
+def get_answer(prompt, question):
+    # Construct prompt
+    prompt_text = f"{prompt}\nQuestion: {question}"
+    messages = [{"role": "user", "content": prompt_text}]
+    
+    # Make completion request
+    completion = client.chat.completions.create(model=deployment, messages=messages)
+    return completion["choices"][0]["message"]["content"]
 
+def main():
+    st.title("Interactive Prompt & Answer App")
 
+    # Text input for the initial prompt
+    prompt = st.text_input("Enter your prompt:")
 
-# configure Azure OpenAI service client 
-client = OpenAI(
-  api_key=os.environ['OPENAI_API_KEY']
-  )
+    if prompt:
+        # Text input for the question
+        question = st.text_input("Enter your question:")
 
-#deployment=os.environ['OPENAI_DEPLOYMENT']
-deployment="gpt-4"
+        if st.button("Get Answer"):
+            # Get the answer based on the prompt and question
+            answer = get_answer(prompt, question)
+            st.write(f"Answer: {answer}")
 
-# add your completion code
-question = input_text1
-prompt = f"""
-You are an expert investor & a problem solver gunius  an IQ of 200.
+            # Text input for the next prompt based on the answer
+            next_prompt = st.text_input("Enter next prompt based on the answer:")
+            
+            if st.button("Get Answer for Next Prompt"):
+                # Get the answer for the next prompt
+                next_answer = get_answer(next_prompt, question)
+                st.write(f"Answer for Next Prompt: {next_answer}")
 
-You find realword issue & turn them to business ideas.
-
-Provide 10 problems for the sector of {question}
-"""
-messages = [{"role": "user", "content": prompt}]  
-# make completion
-completion = client.chat.completions.create(model=deployment, messages=messages)
-
-
-
-#  very unhappy _____.
-
-# Once upon a time there was a very unhappy mermaid.
-
-if submit:
-    st.write(completion.choices[0].message.content)
+if __name__ == "__main__":
+    main()
