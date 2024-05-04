@@ -33,39 +33,26 @@ def get_answer(prompt, question):
         st.error(f"Error: {str(e)}")
         return None
 
-class SessionState:
-    def __init__(self, **kwargs):
-        self.__dict__.update(**kwargs)
-
 def main():
     st.title("Interactive Prompt & Answer App")
 
-    # Initialize session state
-    state = SessionState(answer=None)
-
-    # Text input for the initial prompt
-    prompt = st.text_input("Enter your prompt:")
-
-    if prompt:
-        # Text input for the question
+    # Stage 1: Input prompt and question
+    if 'stage' not in st.session_state:
+        st.session_state.stage = 1
+    if st.session_state.stage == 1:
+        prompt = st.text_input("Enter your prompt:")
         question = st.text_input("Enter your question:")
-
         if st.button("Get Answer"):
-            # Get the answer based on the prompt and question
-            state.answer = get_answer(prompt, question)
-            st.write(f"Answer: {state.answer}")
-
-        # Display text input for next prompt only if an answer has been obtained
-        if state.answer:
-            # Text input for the next prompt based on the answer
-            next_prompt = st.text_input("Enter next prompt based on the answer:")
-
-            # Use JavaScript to handle button click without form submission
-            next_answer_button = st.button("Get Answer for Next Prompt", help="next_answer_button")
-            if next_answer_button:
-                # Get the answer for the next prompt
-                next_answer = get_answer(next_prompt, question)
-                st.write(f"Answer for Next Prompt: {next_answer}")
+            st.session_state.answer = get_answer(prompt, question)
+            st.session_state.stage = 2
+    
+    # Stage 2: Display answer and input next prompt
+    elif st.session_state.stage == 2:
+        st.write(f"Answer: {st.session_state.answer}")
+        next_prompt = st.text_input("Enter next prompt based on the answer:")
+        if st.button("Get Answer for Next Prompt"):
+            st.session_state.answer = get_answer(next_prompt, question)
+            st.session_state.stage = 2
 
 if __name__ == "__main__":
     main()
