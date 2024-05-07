@@ -41,7 +41,7 @@ def main():
         st.session_state.stage = 1
     if st.session_state.stage == 1:
         prompt = st.text_input("Enter your prompt:")
-        st.session_state.question = st.text_input("Enter your question:")
+        st.session_state.question = st.text_input("Enter:")
         if st.button("Get Answer"):
             st.session_state.answer = get_answer(prompt, st.session_state.question)
             st.session_state.stage = 2
